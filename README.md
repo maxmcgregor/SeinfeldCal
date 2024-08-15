@@ -1,4 +1,4 @@
-# Seinfel Cal
+# Seinfeld Cal
 React &amp; Node/Express Creating a digital Seinfeld calendar
 
 What is a Seinfeld Calendar?
