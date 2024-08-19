@@ -35,7 +35,8 @@ exports.getHabitWithDaysByHabitId = async (req, res) => {
         if (rows.length === 0) {
             return res.status(404).json({ error: `Habit days for habit with id ${id} were not found. Err: ${err.message}` });
         }
-        res.status(200).json(rows);
+        const reshapedHabitDays = reshapeData.shapeHabitsWithDaysForReact(rows);
+        res.status(200).json(reshapedHabitDays);
     } catch (err) {
         res.status(500).json({ error: `There was an error retrieving habit days for habit id ${id}. Err: ${err.message}` });
     }
