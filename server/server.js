@@ -13,7 +13,7 @@ app.use(cors());
 app.use(helmet());
 
 //Routes
-app.use('/habits', habitRoutes);
+app.use('/api/habits', habitRoutes);
 
 app.get('/', (req, res) => {
     res.send('Hello, Seinfeld!');
