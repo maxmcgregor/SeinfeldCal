@@ -20,12 +20,12 @@ const shapeHabitsWithDaysForReact = (habitWithDaysData) => {
     });
     
     // Convert result object to desired format
-    const finalResult = Object.keys(result).map(weekStartDate => {
-        // Convert weekStartDate to Date object
+    const weeks = Object.keys(result).map(weekStartDate => {
+        
         const startOfWeek = new Date(weekStartDate);
         const days = Array(7).fill(null).map((_, index) => {
             const currentDay = new Date(startOfWeek.getTime() + index * 24 * 60 * 60 * 1000);
-            const dateStr = currentDay.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+            const dateStr = currentDay.toISOString().split('T')[0]; // Format date as YYYY-MM-DD. Might be a better way to do this.
 
             return {
                 date: dateStr,
@@ -34,15 +34,14 @@ const shapeHabitsWithDaysForReact = (habitWithDaysData) => {
         });
 
         return {
-            habitName,
             weekStartDate: weekStartDate,
             days
         };
-    });
-
-    return finalResult;
-} 
+    }).filter(Boolean);
     
+    return {habitName, weeks};
+}
+
 module.exports = {
     shapeHabitsWithDaysForReact
 }

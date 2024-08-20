@@ -4,25 +4,23 @@ import Button from 'react-bootstrap/Button';
 
 const CalendarWeek = ({weekData}) => {
     
-    const [weekStartDateIso, days] = Object.entries(weekData)[0];
+    const { weekStartDate, days } = weekData;
     
-    const weekStartDate = new Date(weekStartDateIso).toLocaleDateString('en-US', {
-        month: 'numeric',
-        day: 'numeric'
-    })
-    
+    const devButton = () => {
+        console.log("weekData ", weekData);
+        console.log("weekStartDate ", weekStartDate);
+        console.log("days: ", days);
+    }
     return (
         <>
-            {/* <p>This is calendar week starting on {weekStartDate}</p> */}
-            <div style={{display: 'flex', flexWrap: 'wrap'}}>
-                {Object.entries(days).map(([date, completed]) => (
-                    <CalendarDay
-                        key={date}
-                        dateIso={date}
-                        completed={completed}
-                    />
-                ))}
-            </div>
+            <p>This is calendar week starting on {weekStartDate}</p>
+            {days.map((dayData, index) => (
+                <CalendarDay
+                    key={dayData.date}
+                    dayData={dayData}
+                />
+            ))}
+            <Button variant='danger' size="sm" onClick={devButton}>week</Button>
         </>
     )
 }
