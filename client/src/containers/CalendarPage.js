@@ -21,13 +21,16 @@ const CalendarPage = ({ handleLogin }) => {
         fetchAllCalendarData();
     }, []);
 
-    const quickLogout = () => {
+    const devButton = () => {
         // handleLogin();
         console.log("calendarDataReal: ", calendarDataReal);
         if (calendarDataReal) {
             console.log("habit name: ", calendarDataReal.habitName);
+            console.log("start date: " , calendarDataReal.habitStartDate);
         }
     }
+
+    const calendarBodyKey = '';
 
     return (
         <>
@@ -38,7 +41,7 @@ const CalendarPage = ({ handleLogin }) => {
                     </div>
                     <div>
                         <CalendarBody
-                            key={1}
+                            key={calendarDataReal.habitId}
                             calendarDataReal={calendarDataReal}
                         />
                     </div>
@@ -47,7 +50,7 @@ const CalendarPage = ({ handleLogin }) => {
                 <p>Loading...</p>
             )}
             <br />
-            <Button variant='danger' size="sm" onClick={quickLogout}>CalendarPage</Button>
+            {/* <Button variant='danger' size="sm" onClick={devButton}>CalendarPage</Button> */}
         </>
     )
 }

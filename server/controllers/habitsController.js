@@ -29,7 +29,7 @@ exports.getHabitById = async (req, res) => {
 exports.getHabitWithDaysByHabitId = async (req, res) => {
     try {
         const { habitId } = req.params;
-        const query = 'SELECT h.id as habitId, hd.id as habitDayId, h.name AS habitName, h.start_date AS startDate, hd.date, hd.completed, hd.week FROM habits h JOIN habit_days hd ON h.id = hd.habit_id WHERE h.id = ? ORDER BY hd.date';
+        const query = 'SELECT h.id as habitId, h.start_date as habitStartDate, hd.id as habitDayId, h.name AS habitName, h.start_date AS startDate, hd.date, hd.completed, hd.week FROM habits h JOIN habit_days hd ON h.id = hd.habit_id WHERE h.id = ? ORDER BY hd.date';
         const [rows] = await pool.query(query, [habitId]);
         
         if (rows.length === 0) {

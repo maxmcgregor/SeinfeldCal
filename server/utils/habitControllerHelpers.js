@@ -2,9 +2,10 @@ const shapeHabitsWithDaysForReact = (habitWithDaysData) => {
     const result = {};
     let habitName = null;
     let habitId = null;
+    let habitStartDate = null;
     
     habitWithDaysData.forEach(day => {
-        const { date, completed, week, habitName: name, habitId: id, habitDayId } = day;
+        const { date, completed, week, habitName: name, habitId: id, habitStartDate: habitStartDateValue, habitDayId } = day;
 
         if (!habitName) {
             habitName = name;
@@ -13,7 +14,11 @@ const shapeHabitsWithDaysForReact = (habitWithDaysData) => {
         if (!habitId) {
             habitId = id;
         }
-        
+
+        if (!habitStartDate) {
+            habitStartDate = new Date(habitStartDateValue).toISOString().split('T')[0]
+        }
+
         const formattedWeek = new Date(week).toISOString().split('T')[0];
         const formattedDate = new Date(date).toISOString().split('T')[0];
         
@@ -48,8 +53,8 @@ const shapeHabitsWithDaysForReact = (habitWithDaysData) => {
             days
         };
     }).filter(Boolean);
-    
-    return {habitName, habitId, weeks};
+
+    return { habitName, habitId, habitStartDate, weeks };
 }
 
 module.exports = {
