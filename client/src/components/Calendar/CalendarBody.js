@@ -20,10 +20,11 @@ const CalendarBody = ({ calendarDataReal }) => {
                 <CalendarWeek
                     key={weekData.weekStartDate}
                     weekData={weekData}
+                    habitStartDate={habitStartDate}
                 />
             ))}
             <br /><br />
-            <Button variant='danger' size="sm" onClick={devButton}>CalendarBody</Button>
+            {/* <Button variant='danger' size="sm" onClick={devButton}>CalendarBody</Button> */}
         </>
     )
 }
