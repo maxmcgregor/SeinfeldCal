@@ -13,16 +13,14 @@ const CalendarWeek = ({ weekData, habitStartDate }) => {
     }
     return (
         <>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                <div style={{display:'flex', flexWrap: 'wrap', flexGrow: 1}}>
-                    {days.map((dayData, index) => (
-                        <CalendarDay
-                            key={dayData.date}
-                            dayData={dayData}
-                            habitStartDate={habitStartDate}
-                        />
-                    ))}
-                </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {days.map((dayData, index) => (
+                    <CalendarDay
+                        key={dayData.date}
+                        dayData={dayData}
+                        habitStartDate={habitStartDate}
+                    />
+                ))}
             </div>
             {/* <Button variant='danger' size="sm" onClick={devButton}>week</Button> */}
         </>

@@ -30,8 +30,6 @@ const CalendarPage = ({ handleLogin }) => {
         }
     }
 
-    const calendarBodyKey = '';
-
     return (
         <>
             {calendarDataReal ? (

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FormatDate } from '../../utils/CalendarHelpers';
+import '../../App.css';
 import Button from 'react-bootstrap/Button';
 
 const CalendarDay = ({ dayData, habitStartDate }) => {
@@ -9,10 +11,25 @@ const CalendarDay = ({ dayData, habitStartDate }) => {
     const devButton = () => {
         console.log("dayData: ", dayData);
     }
-
-    const completedIcon = habitDayId !== null ? (completed ? "✅" : "❌") : '🔮';
-    const formattedDate = new Date(date).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' });
     
+    const updateHabitDayCompleted = async (habitDayId, completed) => {
+        try {
+            const response = await fetch(`http://localhost:5001/api/habit_days/completed/${habitDayId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ completed }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to update habit day ${date}`);
+            }
+
+            const result = await response.json();
+        } catch (err) {
+            console.error(`Error updating habit day ${date} : ${err}`);
+        }
+    };
+
     const handleIconClick = () => {
         
         if (habitDayId !== null) {
@@ -33,44 +50,22 @@ const CalendarDay = ({ dayData, habitStartDate }) => {
                 console.error("Dang, you time traveled to complete your habit in the future? Badass.");
                 return;
             }
-
         }
     }
 
-    const updateHabitDayCompleted = async (habitDayId, completed) => {
-
-        try {
-            const response = await fetch(`http://localhost:5001/api/habit_days/completed/${habitDayId}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ completed }),
-            });
-
-            if (!response.ok) {
-                throw new Error(`Failed to update habit day ${date}`);
-            }
-
-            const result = await response.json();
-            
-        } catch (err) {
-            console.error(`Error updating habit day ${date} : ${err}`);
-        }
-    }
+    const backgroundColor = habitDayId !== null ? (completed ? 'lightgreen' : 'pink') : 'lightgray';
+    const formattedDate = FormatDate(date, 'numeric', 'numeric', 'numeric', false, true, false);
 
     return (
         <>
             <div>
-                <div style={{
-                    margin: '5px',
-                    padding: '10px',
-                    border: '1px solid black',
-                    cursor: habitDayId !== null ? 'pointer' : 'default'
-                }}
+                <div
+                    className="calendar-day"
+                    style={{cursor: habitDayId !== null ? 'pointer' : 'default', backgroundColor: backgroundColor}}
                     onClick={handleIconClick}
                 >
-                    <p>{completedIcon}</p>
+                    <p className="calendar-day-formatted-date">{formattedDate}</p>
                 </div>
-                <p>{formattedDate}</p>
                 {/* <Button variant='danger' size="sm" onClick={devButton}>day</Button> */}
             </div>
         </>
