@@ -17,7 +17,7 @@ const GoogleAuth = () => {
             });
 
             const data = await response.json();
-
+            //this data is a token and an array with a single user json (maybe change that? idk)
         } catch (err) {
             console.error(`Error sending JWT to back end: ${err}`);
         }
