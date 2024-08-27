@@ -5,7 +5,7 @@ require('dotenv').config();
 const generateJWT = (user) => {
     const { id: userId, email: userEmail } = user;
     const jwtPayload = { id: userId, email: userEmail };
-    const jwtToken = jwt.sign(jwtPayload, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const jwtToken = jwt.sign(jwtPayload, process.env.JWT_SECRET, { expiresIn: '365d' });
     return jwtToken;
 }
 
