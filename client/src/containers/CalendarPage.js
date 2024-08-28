@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import CalendarHeader from "../components/Calendar/CalendarHeader";
 import CalendarBody from "../components/Calendar/CalendarBody";
 
-const CalendarPage = ({ handleLogin }) => {
+const CalendarPage = ({user}) => {
 
     const [calendarDataReal, setCalendarDataReal] = useState(null);
 
@@ -22,7 +22,6 @@ const CalendarPage = ({ handleLogin }) => {
     }, []);
 
     const devButton = () => {
-        // handleLogin();
         console.log("calendarDataReal: ", calendarDataReal);
         if (calendarDataReal) {
             console.log("habit name: ", calendarDataReal.habitName);

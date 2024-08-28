@@ -1,11 +1,11 @@
 import React from "react";
 import { GoogleLogin } from "@react-oauth/google";
 
-const GoogleAuth = () => {
+const GoogleAuth = ({ setUser, setToken }) => {
 
     const handleGoogleLoginSuccess = async (credentialResponse) => {
 
-        const token = credentialResponse.credential; 
+        const token = credentialResponse.credential;
 
         try {
             const response = await fetch('http://localhost:5001/auth/google-auth', {
@@ -17,9 +17,19 @@ const GoogleAuth = () => {
             });
 
             const data = await response.json();
-            //this data is a token and an array with a single user json (maybe change that? idk)
+
+            if (data.token && data.user && Array.isArray(data.user)) {
+                const userObject = data.user[0];
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("authenticatedUser", JSON.stringify(userObject));
+                setUser(userObject);
+                setToken(data.token);
+            } else {
+                console.error('Unexpected response format:', data);
+            }
+
         } catch (err) {
-            console.error(`Error sending JWT to back end: ${err}`);
+            console.error(`Error sending Google JWT to back end: ${err}`);
         }
     }
 
