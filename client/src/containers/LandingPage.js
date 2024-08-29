@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import GoogleAuth from '../components/Authentication/GoogleAuth';
 import CalendarPage from './CalendarPage';
+import LoginPage from './LoginPage';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import '../styling/LandingPage.css';
 import Button from "react-bootstrap/Button";
@@ -37,15 +38,9 @@ const LandingPage = () => {
     return (
         <div className='landing-page-container'>
             {user && token ? (
-                    //pass user object into calendar page so their specific info renders 
-                    //you'll have to update endpoints to use user id to get the correct items
-                <CalendarPage user={user} /> 
+                <CalendarPage user={user} />
             ) : (
-                <>
-                    <h1>Welcome to Seinfeld Cal ❌</h1>
-                    <GoogleAuth setUser={setUser} setToken={setToken} />
-
-                </>
+                <LoginPage setUser={setUser} setToken={setToken} />
             )}
             <Button variant="warning" onClick={googleLogoutButton}>Google logout</Button>
             <Button variant="dark" onClick={devButton}>Dev button</Button>
