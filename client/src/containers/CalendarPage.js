@@ -1,73 +1,42 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import CalendarHeader from "../components/Calendar/CalendarHeader";
-import CalendarBody from "../components/Calendar/CalendarBody";
+import SampleCalendar from "../components/Calendar/SampleCalendar";
+import UserCalendar from "../components/Calendar/UserCalendar"
+import useSampleCalendarData from "../hooks/useSampleCalendarData";
+import useUserCalendarData from "../hooks/useUserCalendarData";
 
-const CalendarPage = ({user}) => {
-
-    const [sampleCalendarData, setSampleCalendarData] = useState(null);
-    const [userCalendarData, setUserCalendarData] = useState(null);
-
-    useEffect(() => {
-        const fetchSampleCalendarData = async () => {
-            try {
-                const response = await fetch("http://localhost:5001/api/habits/habit_with_days/1");
-                const sampleCalendarData = await response.json();
-                setSampleCalendarData(sampleCalendarData);
-            } catch (err) {
-                console.error(`There was an error with fetchSampleCalendarData: ${err}`);
-            }
-        }
-
-        const fetchUserCalendarData = async (userId) => {
-            try {
-                const response = await fetch(`http://localhost:5001/api/habits/user/${userId}/habits_with_days/`);
-                const userCalendarData = await response.json();
-                setUserCalendarData(userCalendarData);
-            } catch (err) {
-
-            }
-        }
-
-        if (!user) {
-            fetchSampleCalendarData();
-        } else {
-            console.log("pretending to call fetchUserCalendarData");
-            // fetchUserCalendarData(user.id);
-            fetchSampleCalendarData();
-        }
-    }, []);
+const CalendarPage = ({ user }) => {
+    
+    const { data: sampleCalendarData, isLoading: isLoadingSample, error: sampleError } = useSampleCalendarData();
+    const { data: userCalendarData, isLoading: isLoadingUser, error: userError } = useUserCalendarData(user?.id);
+    
+    if (user && isLoadingUser) return <p>Loading user calendars...</p>;
+    if (!user && isLoadingSample) return <p>Loading sample calendar...</p>
 
     const devButton = () => {
-        console.log("sampleCalendarData: ", sampleCalendarData);
-        if (sampleCalendarData) {
-            console.log("habit name: ", sampleCalendarData.habitName);
-            console.log("start date: ", sampleCalendarData.habitStartDate);
-        }
+        console.log("user: ", user);
+        console.log("userCalendarData: ", userCalendarData);
     }
-
-    return (
-        <>
-            {/* replace below by checking for userCalendarData, then passing the current components into a forEach situation. idk brainstorm how it'll work. you'll want to toggle between habits with arrows */}
-            {sampleCalendarData ? (
-                <>
-                    <div>
-                        <CalendarHeader calendarName={sampleCalendarData.habitName} />
-                    </div>
-                    <div>
-                        <CalendarBody
-                            key={sampleCalendarData.habitId}
-                            calendarData={sampleCalendarData}
-                        />
-                    </div>
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
-            <br />
-            {/* <Button variant='danger' size="sm" onClick={devButton}>CalendarPage</Button> */}
-        </>
-    )
+    
+    if (user) {
+        return (
+            <>
+            <UserCalendar
+                calendars={userCalendarData}
+                error={userError}
+            />
+                {/* <Button variant='danger' size="sm" onClick={devButton}>CalendarPage</Button> */}
+            </>
+        )
+    } else {
+        return (
+            <SampleCalendar
+                calendarData={sampleCalendarData}
+                error={sampleError}
+            />
+        )
+    }
+    
 }
 
 export default CalendarPage;
