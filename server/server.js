@@ -4,6 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const habitRoutes = require('./routes/habitRoutes');
 const habitDaysRoutes = require('./routes/habitDaysRoutes');
+const authRoutes = require('./routes/AuthRoutes');
 
 const app = express()
 const port = process.env.PORT || 5001;
@@ -16,6 +17,7 @@ app.use(helmet());
 //Routes
 app.use('/api/habits', habitRoutes);
 app.use('/api/habit_days', habitDaysRoutes);
+app.use('/auth', authRoutes); 
 
 app.get('/', (req, res) => {
     res.send('Hello, Seinfeld!');

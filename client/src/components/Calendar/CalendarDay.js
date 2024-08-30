@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FormatDate } from '../../utils/CalendarHelpers';
-import '../../App.css';
+
+import '../../styling/CalendarDay.css';
 import Button from 'react-bootstrap/Button';
 
 const CalendarDay = ({ dayData, habitStartDate }) => {
