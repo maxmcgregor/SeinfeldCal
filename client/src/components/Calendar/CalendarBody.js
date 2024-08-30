@@ -4,9 +4,9 @@ import { FormatDate } from '../../utils/CalendarHelpers';
 import Button from 'react-bootstrap/Button';
 
 
-const CalendarBody = ({ calendarDataReal }) => {
+const CalendarBody = ({ calendarData }) => {
 
-    const { weeks, habitStartDate } = calendarDataReal;
+    const { weeks, habitStartDate } = calendarData;
     const formattedHabitStartDate = FormatDate(habitStartDate, 'long', 'numeric', 'numeric', true, true, true);
 
     const devButton = () => {
