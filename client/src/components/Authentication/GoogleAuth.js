@@ -39,10 +39,12 @@ const GoogleAuth = ({ setUser, setToken }) => {
 
     return (
         <div className="google-login-container">
-        <GoogleLogin
-            onSuccess={handleGoogleLoginSuccess}
-            onFailure={handleGoogleLoginFailure}
-        />
+            <GoogleLogin
+                onSuccess={handleGoogleLoginSuccess}
+                onFailure={handleGoogleLoginFailure}
+                size={"large"}     
+                shape={"pill"}
+            />
         </div>
     )
 }
