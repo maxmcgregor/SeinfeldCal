@@ -74,3 +74,23 @@ exports.getUserHabitsWithDaysByUserId = async (req, res) => {
         res.status(500).json({ error: `There was an error retrieving habit days for the logged in user. Err: ${err.message}` });
     }
 }
+
+exports.createNewUserHabit = async (req, res) => {
+    try {
+        const { userId, habitName, startDate } = req.body;
+        
+        console.log("req.body: ", req.body);
+        
+        if (!userId || !habitName || !startDate) {
+            return res.status(400).json({ error: "Missing required fields" });
+        }
+        
+        const query = "INSERT INTO HABITS (user_id, name, start_date) VALUES (?, ?, ?)"
+        
+        await pool.execute(query, [userId, habitName, startDate]);
+        
+        res.status(201).json({ message: 'Habit created successfully' });
+    } catch (err) {
+        res.status(500).json({error: `There was an error creating a new habit: ${err.message}`});
+    }
+}

@@ -90,3 +90,8 @@
 .calendar-switcher-right {
     margin-left: 5%;
 }
+
+.calendar-page-button {
+    position: fixed;
+    top: 10px
+}

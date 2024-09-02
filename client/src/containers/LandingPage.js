@@ -36,15 +36,19 @@ const LandingPage = () => {
     }
 
     return (
-        <div className='landing-page-container'>
-            {user && token ? (
-                <CalendarPage user={user} />
-            ) : (
-                <LoginPage setUser={setUser} setToken={setToken} />
-            )}
-            <Button variant="warning" onClick={googleLogoutButton}>Google logout</Button>
-            <Button variant="dark" onClick={devButton}>Dev button</Button>
-        </div>
+        <>
+            <div className='landing-page-container'>
+                {user && token ? (
+                    <>
+                    <CalendarPage user={user} />
+                    {/* <Button variant="dark" onClick={devButton}>Dev button</Button>
+                    <Button variant="warning" onClick={googleLogoutButton}>Google logout</Button> */}
+                    </>
+                ) : (
+                    <LoginPage setUser={setUser} setToken={setToken} />
+                )}
+            </div>
+        </>
     )
 }
 
