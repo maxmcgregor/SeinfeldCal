@@ -17,7 +17,8 @@ const CalendarBody = ({ calendarData }) => {
 
     return (
         <>
-            <p>Habit started {formattedHabitStartDate}</p>
+            {/* format this dynamically like you do the title. on a big enough screen it's kind of fucked up */}
+            <p>Habit started {formattedHabitStartDate}</p> 
             {weeks.map((weekData, index) => (
                 <CalendarWeek
                     key={weekData.weekStartDate}

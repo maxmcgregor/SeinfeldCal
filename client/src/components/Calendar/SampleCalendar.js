@@ -6,7 +6,7 @@ const SampleCalendar = ({calendarData}) => {
     
     return (
         <>
-            <CalendarHeader calendarName={calendarData.habitName} />
+            <CalendarHeader calendarName={"Habit"} />
             <CalendarBody
                 key={calendarData.habitId}
                 calendarData={calendarData}

@@ -13,7 +13,7 @@ const CalendarWeek = ({ weekData, habitStartDate }) => {
     }
     return (
         <>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className="calendar-week-row" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {days.map((dayData, index) => (
                     <CalendarDay
                         key={dayData.date}
