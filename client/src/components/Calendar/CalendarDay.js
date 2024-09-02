@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormatDate } from '../../utils/CalendarHelpers';
+import { FormatDate, ShouldTheMonthBeDisplayed } from '../../utils/CalendarHelpers';
 
 import '../../styling/CalendarDay.css';
 import Button from 'react-bootstrap/Button';
@@ -10,7 +10,8 @@ const CalendarDay = ({ dayData, habitStartDate }) => {
     const [completed, setCompleted] = useState(initialCompleted);
 
     const devButton = () => {
-        console.log("dayData: ", dayData);
+        console.log("displayMonth: " , displayMonth);
+        console.log("monthName: " , monthName);
     }
     
     const updateHabitDayCompleted = async (habitDayId, completed) => {
@@ -56,21 +57,25 @@ const CalendarDay = ({ dayData, habitStartDate }) => {
 
     const backgroundColor = habitDayId !== null ? (completed ? 'lightgreen' : 'pink') : 'lightgray';
     const formattedDate = FormatDate(date, 'numeric', 'numeric', 'numeric', false, true, false);
+    const [displayMonth, monthName]= ShouldTheMonthBeDisplayed(date);
 
     return (
         <>
             <div>
                 <div
                     className="calendar-day"
-                    style={{cursor: habitDayId !== null ? 'pointer' : 'default', backgroundColor: backgroundColor}}
+                    style={{ cursor: habitDayId !== null ? 'pointer' : 'default', backgroundColor: backgroundColor }}
                     onClick={handleIconClick}
                 >
-                    <p className="calendar-day-formatted-date">{formattedDate}</p>
+                    <div className="calendar-day-content">
+                        <p className="calendar-day-formatted-date">{formattedDate}</p>
+                        {displayMonth && <p className="calendar-day-month-name">{monthName}</p>}
+                    </div>
                 </div>
                 {/* <Button variant='danger' size="sm" onClick={devButton}>day</Button> */}
             </div>
         </>
-    )
+    );
 }
 
 export default CalendarDay;

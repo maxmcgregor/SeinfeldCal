@@ -22,3 +22,22 @@ export function FormatDate(dateStr, monthFormat='numeric', dayFormat='numeric', 
     
     return date.toLocaleDateString('en-US', options);
 }
+
+export function ShouldTheMonthBeDisplayed(dateStr) {
+    const [year, month, day] = dateStr.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    
+    const isFirstOfMonth = date.getDate() === 1;
+    
+    if (isFirstOfMonth) {
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const monthName = monthNames[date.getMonth()];
+        
+        return [true, monthName];
+    }
+    
+    return [false, '']
+}
