@@ -18,7 +18,8 @@ const CalendarBody = ({ calendarData }) => {
     return (
         <>
             {/* format this dynamically like you do the title. on a big enough screen it's kind of fucked up */}
-            <p>Habit started {formattedHabitStartDate}</p> 
+            <p className="sticky-date-started-header">Habit started {formattedHabitStartDate}</p> 
+            <div className="scrollable-calendar-weeks">
             {weeks.map((weekData, index) => (
                 <CalendarWeek
                     key={weekData.weekStartDate}
@@ -26,6 +27,7 @@ const CalendarBody = ({ calendarData }) => {
                     habitStartDate={habitStartDate}
                 />
             ))}
+            </div>
             <br /><br />
             {/* <Button variant='danger' size="sm" onClick={devButton}>CalendarBody</Button> */}
         </>

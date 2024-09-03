@@ -44,6 +44,7 @@
     transform: translateX(-50%);
     z-index: 0;
 }
+
 .calendar-header-container {
     display: flex;
     align-items: center;
@@ -53,16 +54,6 @@
     left: 0;
     right: 0;
     padding: 2% 28%;
-}
-
-.calendar-body-container {
-    padding: 0 5%;
-    overflow-y: auto;
-    max-height: calc(100vh - 100px);
-    position: fixed;
-    top: 160px;
-    left: 0;
-    right: 0;
 }
 
 .calendar-header-switcher {
@@ -108,4 +99,33 @@
 .calendar-page-button {
     position: fixed;
     top: 10px
+}
+
+.sticky-date-started-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 10px;
+    z-index: 10;
+}
+
+
+.calendar-body-container {
+    padding: 0 5%;
+    overflow-y: auto;
+    max-height: calc(100vh - 100px);
+    position: fixed;
+    top: 160px;
+    left: 0;
+    right: 0;
+    padding-bottom: 100px;
+}
+
+.scrollable-calendar-weeks {
+    overflow-y: auto;
+    max-height: calc(100vh - 100px);
+    mask-image: linear-gradient(to bottom, transparent, black 3%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 3%);
+    padding-top: 10px;
+    padding-bottom: 100px;
 }

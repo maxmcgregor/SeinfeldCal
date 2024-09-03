@@ -29,7 +29,7 @@ const CalendarPage = ({ user }) => {
         <>
             {userHasCalendars ? (
                 <>
-                    <Button className="calendar-page-button" variant='danger' size="sm" onClick={devButton}>CalendarPage</Button>
+                    {/* <Button className="calendar-page-button" variant='danger' size="sm" onClick={devButton}>CalendarPage</Button> */}
                     <UserCalendar calendars={userCalendarData} error={userError} />
                 </>
             ) : userHasNoCalendars ? (
