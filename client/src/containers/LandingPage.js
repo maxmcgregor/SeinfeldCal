@@ -38,7 +38,7 @@ const LandingPage = () => {
 
     return (
         <>
-            <NavBar onLogout={googleLogoutButton}/>
+            <NavBar onLogout={googleLogoutButton} user={user} />
             <div className='landing-page-container'>
                 {user && token ? (
                     <>
