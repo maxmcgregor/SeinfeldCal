@@ -1,0 +1,28 @@
+.navbar-parent-container {
+    width: 100%;
+}
+
+.navbar-collapse {
+    display: flex;
+    justify-content: space-between;
+    /* Ensures space is distributed between items */
+    width: 100%;
+}
+
+.navbar-links {
+    flex: 1;
+    /* Allows the nav to grow and take available space */
+    display: flex;
+    justify-content: center;
+    /* Center-aligns the links */
+}
+
+.navbar-brand {
+    margin-right: auto;
+    /* Pushes the brand to the far left */
+}
+
+.ms-auto {
+    margin-left: auto;
+    /* Pushes the dropdown to the far right */
+}

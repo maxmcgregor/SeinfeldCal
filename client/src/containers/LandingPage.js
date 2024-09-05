@@ -43,7 +43,7 @@ const LandingPage = () => {
                 {user && token ? (
                     <>
                     <CalendarPage user={user} />
-                    {/* <Button variant="dark" onClick={devButton}>Dev button</Button> */}
+                    {/* <Button variant="dark" onClick={devButton}>Landing Page</Button> */}
                     </>
                 ) : (
                     <LoginPage setUser={setUser} setToken={setToken} />
