@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import GoogleAuth from '../components/Authentication/GoogleAuth';
 import CalendarPage from './CalendarPage';
 import LoginPage from './LoginPage';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import '../styling/LandingPage.css';
 import Button from "react-bootstrap/Button";
 import NavBar from './NavBar';
-
 
 const LandingPage = () => {
 
