@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import CalendarHeader from "./CalendarHeader";
 import CalendarBody from "./CalendarBody";
 import CalendarHeaderSwitcher from "./CalendarHeaderSwitcher";
 import Button from "react-bootstrap/Button";
@@ -19,16 +18,18 @@ const UserCalendar = ({calendars, error}) => {
     
     const devButton = () => {
         console.log("currentCalendar: ", currentCalendar);
-        console.log("calendars: ", calendars);
+        console.log("calendars: ", calendars.length);
     }
     
     return (
         <>
             <div className="calendar-header-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            {/* <Button onClick={devButton}>UserCalendar component</Button> */}
                 <CalendarHeaderSwitcher
                     calendarName={currentCalendar.habitName}
                     onPrev={handlePrevCalendar}
                     onNext={handleNextCalendar}
+                    numberOfCalendars={calendars.length}
                 />
             </div>
             <div className="calendar-body-container">
