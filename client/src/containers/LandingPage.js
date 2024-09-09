@@ -26,7 +26,7 @@ const LandingPage = () => {
         console.log("token: ", token);
     }
 
-    const googleLogoutButton = () => {
+    const logoutGoogle = () => {
         googleLogout();
         localStorage.removeItem('token');
         localStorage.removeItem('authenticatedUser');
@@ -36,13 +36,10 @@ const LandingPage = () => {
 
     return (
         <>
-            <div className="navbar-container">
-                {user && token && <NavBar onLogout={googleLogoutButton} user={user} />}
-            </div>
             <div className='landing-page-container'>
                 {user && token ? (
                     <>
-                        <CalendarPage user={user} />
+                        <CalendarPage user={user} logoutGoogle={logoutGoogle} />
                         {/* <Button variant="dark" onClick={devButton}>Landing Page</Button> */}
                     </>
                 ) : (

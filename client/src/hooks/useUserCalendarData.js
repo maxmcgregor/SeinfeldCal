@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useUserCalendarData = (userId) => {
+const useUserCalendarData = (userId, refreshKey) => {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -12,14 +12,14 @@ const useUserCalendarData = (userId) => {
                 const result = await response.json();
                 setData(result);
             } catch (err) {
-                setError(err);
+                setError(err || 'An error occurred fetching user calendar data');
             } finally {
                 setIsLoading(false);
             }
         }
         
         fetchUserData();
-    }, []);
+    }, [userId, refreshKey]);
     
     return {data, isLoading, error}
 }

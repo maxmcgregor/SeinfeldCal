@@ -6,9 +6,8 @@ import NewCalendarModal from "../components/Modals/NewCalendarModal";
 import '../styling/NavBar.css';
 import AboutAppModal from "../components/Modals/AboutAppModal";
 
-const NavBar = ({ onLogout, user }) => {
+const NavBar = ({ logoutGoogle, user, setShowNewCalendarModal }) => {
 
-    const [showNewCalendarModal, setShowNewCalendarModal] = useState(false);
     const [showAboutAppModal, setShowAboutAppModal] = useState(false);
     const userId = user ? user.id : null;
 
@@ -26,17 +25,13 @@ const NavBar = ({ onLogout, user }) => {
                     <Nav className="ms-auto">
                         {userId && (
                             <NavDropdown title="Profile" id="basic-nav-dropdown">
-                                <NavDropdown.Item onClick={onLogout}>Log out</NavDropdown.Item>
+                                <NavDropdown.Item onClick={logoutGoogle}>Log out</NavDropdown.Item>
                             </NavDropdown>
                         )}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <NewCalendarModal
-                showModal={showNewCalendarModal}
-                handleClose={() => setShowNewCalendarModal(false)}
-                userId={userId}
-            />
+
             <AboutAppModal
                 showModal={showAboutAppModal}
                 handleClose={() => setShowAboutAppModal(false)}

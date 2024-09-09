@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
-const NewCalendarModal = ({ showModal, handleClose, userId }) => {
+const NewCalendarModal = ({ showModal, handleClose, userId, onCalendarAdded }) => {
     
     const [habitName, setHabitName] = useState("");
     const [startDate, setStartDate] = useState(new Date().toISOString().split('T')[0]);
     
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(`New habit: ${habitName}, ${startDate}`);
         try {
             const response = await fetch('http://localhost:5001/api/habits/new_habit', {
                 method: 'PUT',
@@ -23,6 +22,7 @@ const NewCalendarModal = ({ showModal, handleClose, userId }) => {
             });
             
             if (response.ok) {
+                onCalendarAdded();
                 handleClose();
             } else {
                 console.error("Error adding new habit");

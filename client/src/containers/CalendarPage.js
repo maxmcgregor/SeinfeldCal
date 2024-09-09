@@ -6,13 +6,20 @@ import useSampleCalendarData from "../hooks/useSampleCalendarData";
 import useUserCalendarData from "../hooks/useUserCalendarData";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import NewCalendarModal from "../components/Modals/NewCalendarModal";
+import NavBar from "./NavBar";
 
-const CalendarPage = ({ user }) => {
+const CalendarPage = ({ user, logoutGoogle }) => {
 
     const [showNewCalendarModal, setShowNewCalendarModal] = useState(false);
+    const [refreshKey, setRefreshKey] = useState(0);
 
     const { data: sampleCalendarData, isLoading: isLoadingSample, error: sampleError } = useSampleCalendarData();
-    const { data: userCalendarData, isLoading: isLoadingUser, error: userError } = useUserCalendarData(user?.id);
+    const { data: userCalendarData, isLoading: isLoadingUser, error: userError } = useUserCalendarData(user?.id, refreshKey);
+    
+    const handleNewCalendarAdded = () => {
+        setRefreshKey(prevKey => prevKey + 1);
+        setShowNewCalendarModal(false);
+    }
 
     if (user && isLoadingUser) return <p>Loading user calendars...</p>;
     if (!user && isLoadingSample) return <p>Loading sample calendar...</p>
@@ -25,6 +32,9 @@ const CalendarPage = ({ user }) => {
 
     return (
         <>
+            <div className="navbar-parent-container">
+                {user && (<NavBar user={user} logoutGoogle={logoutGoogle} setShowNewCalendarModal={setShowNewCalendarModal} />)}
+            </div>
             {userHasCalendars ? (
                 <>
                     {/* <Button className="calendar-page-button" variant='danger' size="sm" onClick={devButton}>CalendarPage</Button> */}
@@ -44,6 +54,7 @@ const CalendarPage = ({ user }) => {
                 showModal={showNewCalendarModal}
                 handleClose={() => setShowNewCalendarModal(false)}
                 userId={user.id}
+                onCalendarAdded={handleNewCalendarAdded}
             />
         </>
     );
