@@ -64,3 +64,18 @@
     width: 100%;
     text-align: center;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    /* Centers horizontally */
+    align-items: center;
+    /* Centers vertically if needed */
+    margin-bottom: 2vh;
+    /* Add spacing as needed */
+}
+
+.button-container button {
+    margin: 0 15px;
+    /* Adds horizontal space between buttons */
+}
