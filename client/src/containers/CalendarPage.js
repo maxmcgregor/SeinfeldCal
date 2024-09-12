@@ -49,7 +49,6 @@ const CalendarPage = ({ user, logoutGoogle }) => {
                 <SampleCalendar calendarData={sampleCalendarData} error={sampleError} />
             )}
 
-            {/* Pass the modal visibility state and handlers to the modal component */}
             <NewCalendarModal
                 showModal={showNewCalendarModal}
                 handleClose={() => setShowNewCalendarModal(false)}

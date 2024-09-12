@@ -13,8 +13,8 @@ const NavBar = ({ logoutGoogle, user, setShowNewCalendarModal }) => {
 
     return (
         <>
-            <Navbar sticky="top" data-bs-theme="light" expand="lg" className="bg-body-tertiary">
-                <Navbar.Brand href="#home">Seinfeld Cal</Navbar.Brand>
+            <Navbar data-bs-theme="dark" expand="lg" className="bg-body-tertiary px-4">
+                <Navbar.Brand>Seinfeld Strategy</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto navbar-links">

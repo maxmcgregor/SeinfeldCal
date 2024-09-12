@@ -78,9 +78,7 @@ exports.getUserHabitsWithDaysByUserId = async (req, res) => {
 exports.createNewUserHabit = async (req, res) => {
     try {
         const { userId, habitName, startDate } = req.body;
-        
-        console.log("req.body: ", req.body);
-        
+                
         if (!userId || !habitName || !startDate) {
             return res.status(400).json({ error: "Missing required fields" });
         }
