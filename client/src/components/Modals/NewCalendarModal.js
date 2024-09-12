@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from "react";
-import { Modal, Button, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Modal, Button, Form, FloatingLabel, Row, Col } from "react-bootstrap";
+import '../../styling/MiscStuff.css';
 
 const NewCalendarModal = ({ showModal, handleClose, userId, onCalendarAdded }) => {
-    
+
     const [habitName, setHabitName] = useState("");
     const [startDate, setStartDate] = useState(new Date().toISOString().split('T')[0]);
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -20,7 +21,7 @@ const NewCalendarModal = ({ showModal, handleClose, userId, onCalendarAdded }) =
                     startDate,
                 }),
             });
-            
+
             if (response.ok) {
                 onCalendarAdded();
                 handleClose();
@@ -31,14 +32,14 @@ const NewCalendarModal = ({ showModal, handleClose, userId, onCalendarAdded }) =
             console.error(`Error: ${err}`);
         }
     }
-    
+
     useEffect(() => {
         if (showModal) {
             setHabitName("");
             setStartDate(new Date().toISOString().split('T')[0]);
         }
     }, [showModal]);
-    
+
     const handleModalClose = () => {
         setHabitName("");
         setStartDate(new Date().toISOString().split('T')[0]);
@@ -47,39 +48,47 @@ const NewCalendarModal = ({ showModal, handleClose, userId, onCalendarAdded }) =
 
     return (
         <>
-        <Modal show={showModal} onHide={handleModalClose}>
+            <Modal show={showModal} onHide={handleModalClose} className="new-calendar-modal">
                 <Modal.Header>
                     <Modal.Title>Create New Habit</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="habitName">
-                            <Form.Label>Habit Name</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter habit name"
-                                maxLength={36}
-                                value={habitName}
-                                onChange={(e) => setHabitName(e.target.value)}
-                                required
-                            />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Habit Start Date</Form.Label>
-                            <Form.Control
-                                type="date"
-                                value={startDate}
-                                onChange={(e) => setStartDate(e.target.value)}
-                                required
-                            />
-                        </Form.Group>
-                    <Button variant="secondary" onClick={handleModalClose}>Close</Button>
-                    <Button variant="primary" type="submit">Add Habit</Button>
+                        <Row>
+                            <Col md={6}>
+                                <Form.Group controlId="habitName">
+                                    <FloatingLabel label="Habit Name">
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter habit name"
+                                            maxLength={36}
+                                            value={habitName}
+                                            onChange={(e) => setHabitName(e.target.value)}
+                                            required
+                                        />
+                                    </FloatingLabel>
+                                </Form.Group>
+                            </Col>
+                            <Col md={6}>
+                                <Form.Group>
+                                    <FloatingLabel label="Start Date">
+                                        <Form.Control
+                                            type="date"
+                                            value={startDate}
+                                            onChange={(e) => setStartDate(e.target.value)}
+                                            required
+                                        />
+                                    </FloatingLabel>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Modal.Footer className="d-flex justify-content-center gap-2">
+                            <Button variant="secondary" onClick={handleModalClose}>Close</Button>
+                            <Button variant="success" type="submit">Add Habit</Button>
+                        </Modal.Footer>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                </Modal.Footer>
-        </Modal>
+            </Modal>
         </>
     )
 }

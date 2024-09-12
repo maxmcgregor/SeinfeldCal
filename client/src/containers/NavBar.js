@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import NewCalendarModal from "../components/Modals/NewCalendarModal";
-import '../styling/NavBar.css';
 import AboutAppModal from "../components/Modals/AboutAppModal";
+import '../styling/NavBar.css';
 
 const NavBar = ({ logoutGoogle, user, setShowNewCalendarModal }) => {
 
