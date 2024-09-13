@@ -11,15 +11,15 @@ const AboutAppModal = ({ showModal, handleClose }) => {
                     <Modal.Title className="about-app-title">About Seinfeld Strategy</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    For a thorough description, read <a href="https://jamesclear.com/stop-procrastinating-seinfeld-strategy" target="_blank" rel="noopener noreferrer">James Clear's blog</a> on the topic.
+                    Recommended: <a href="https://jamesclear.com/stop-procrastinating-seinfeld-strategy" target="_blank" rel="noopener noreferrer">James Clear's blog</a> on the topic.
                     <br /><br />
                     Use this tool to build better habits with Jerry Seinfeld's "Don't Break the Chain" strategy.
                     <br /><br />
-                    Small behaviors compound over time. By visually reinforcing your behavior with this calendar, you'll help yourself stay motivated to maintain your streak of behavior.
+                    Behaviors compound over time. Visually reinforce your behavior to help yourself stay motivated.
                     <br /><br />
                     <h5>"Don't Break the Chain"</h5>
                     <br />
-                    It's not about perfection, it's about building momentum towards the person you want to become - one day at a time.
+                    It's not about perfection, it's about building momentum one day at a time.
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
