@@ -23,7 +23,7 @@ const UserCalendar = ({calendars, error}) => {
     
     return (
         <>
-            <div className="calendar-header-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div className="calendar-header-container">
             {/* <Button onClick={devButton}>UserCalendar component</Button> */}
                 <CalendarHeaderSwitcher
                     calendarName={currentCalendar.habitName}

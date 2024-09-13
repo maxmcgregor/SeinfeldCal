@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FormatDate, ShouldTheMonthBeDisplayed } from '../../utils/CalendarHelpers';
-
 import '../../styling/CalendarDay.css';
 import Button from 'react-bootstrap/Button';
 
