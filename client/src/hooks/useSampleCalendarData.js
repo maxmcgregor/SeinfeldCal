@@ -8,7 +8,7 @@ const useSampleCalendarData = () => {
     useEffect(() => {
         const fetchSampleCalendarData = async () => {
             try {
-                const response = await fetch("http://localhost:5001/api/habits/habit_with_days/7");
+                const response = await fetch(`${process.env.REACT_APP_NODE_BASE_URL}/api/habits/habit_with_days/7`);
                 const result = await response.json();
                 setData(result);
             } catch (err) {

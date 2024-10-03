@@ -8,7 +8,7 @@ const GoogleAuth = ({ setUser, setToken }) => {
         const token = credentialResponse.credential;
 
         try {
-            const response = await fetch('http://localhost:5001/auth/google-auth', {
+            const response = await fetch(`${process.env.REACT_APP_NODE_BASE_URL}/auth/google-auth`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

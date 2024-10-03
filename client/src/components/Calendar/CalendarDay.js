@@ -15,7 +15,7 @@ const CalendarDay = ({ dayData, habitStartDate }) => {
     
     const updateHabitDayCompleted = async (habitDayId, completed) => {
         try {
-            const response = await fetch(`http://localhost:5001/api/habit_days/completed/${habitDayId}`, {
+            const response = await fetch(`${process.env.REACT_APP_NODE_BASE_URL}/api/habit_days/completed/${habitDayId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ completed }),

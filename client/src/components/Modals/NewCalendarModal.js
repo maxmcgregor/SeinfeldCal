@@ -10,7 +10,7 @@ const NewCalendarModal = ({ showModal, handleClose, userId, onCalendarAdded }) =
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://localhost:5001/api/habits/new_habit', {
+            const response = await fetch(`${process.env.REACT_APP_NODE_BASE_URL}/api/habits/new_habit`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
